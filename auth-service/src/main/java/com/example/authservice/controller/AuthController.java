@@ -3,11 +3,11 @@ package com.example.authservice.controller;
 import com.example.authservice.config.security.JwtUtil;
 import com.example.authservice.controller.dto.LoginRequestDto;
 import com.example.authservice.service.RedisService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +28,7 @@ public class AuthController {
     private final JwtUtil jwtTokenUtil;
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequestDto loginRequestDto) {
+    public String login(@RequestBody @Valid LoginRequestDto loginRequestDto) {
         // TODO: 인증 서버 로그인 시, 토큰 발급 처리
 
         // 사용자 인증 생성
