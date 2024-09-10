@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+spring:
+  data:
+    redis:
+      host: localhost  # Redis 서버의 호스트명
+      port: 6379       # Redis 서버 포트
+jwt:
+  secret:
+    key: 2e2ab37ae96a148bcb9919d74ecbd818ce9c097151c4b5d5d9049bcbdc05d349c59b9e1ad762c7b6ccf8b73e79fef4a82d13f08db22ca3c3070705b08df3f41c

@@ -1,0 +1,3 @@
+rootProject.name = 'msa-security-example'
+
+include 'gateway-service', 'auth-service', 'product-service'

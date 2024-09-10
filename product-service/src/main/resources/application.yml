@@ -1,0 +1,13 @@
+server:
+  port: 8082
+
+spring:
+  data:
+    redis:
+      host: localhost  # Redis 서버의 호스트명
+      port: 6379       # Redis 서버 포트
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.cloud.gateway: DEBUG

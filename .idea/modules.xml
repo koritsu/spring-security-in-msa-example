@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/auth-service/msa-security-example.auth-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/auth-service/msa-security-example.auth-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/auth-service/msa-security-example.auth-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/auth-service/msa-security-example.auth-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gateway-service/msa-security-example.gateway-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/gateway-service/msa-security-example.gateway-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/product-service/msa-security-example.product-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/product-service/msa-security-example.product-service.main.iml" />
+    </modules>
+  </component>
+</project>
