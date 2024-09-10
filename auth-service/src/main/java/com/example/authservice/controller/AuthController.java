@@ -29,28 +29,27 @@ public class AuthController {
 
     @PostMapping("/login")
     public String login(@RequestBody LoginRequestDto loginRequestDto) {
-        try {
-            // 사용자 인증
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequestDto.username(), loginRequestDto.password())
-            );
+        // TODO: 인증 서버 로그인 시, 토큰 발급 처리
 
-            // 인증 성공 시 JWT 토큰 생성
-            User user = (User) authentication.getPrincipal();
+        // 사용자 인증 생성
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequestDto.username(), loginRequestDto.password())
+        );
 
-            // userDto는 redis에 저장하기 위한 중간 dto 입니다.
-            var userDto = UserDto.fromUser(user);
+        // 인증 성공 시, Redis 저장을 위한 처리를 위해 User를 가져옵니다.
+        User user = (User) authentication.getPrincipal();
 
-            // redis에 저장될 때 user: 라는 prefix와 username을 합쳐 키를 만들고 userDto를 직렬화하여 저장합니다.
+        // userDto는 redis에 저장하기 위한 중간 dto 입니다.
+        var userDto = UserDto.fromUser(user);
 
-            redisService.setValue("user:" + loginRequestDto.username(), userDto);
+        // redis에 저장될 때 user: 라는 prefix와 username을 합쳐 키를 만들고 userDto를 직렬화하여 저장합니다.
 
-            return jwtTokenUtil.createToken(user.getUsername(), user.getAuthorities());
+        redisService.setValue("user:" + loginRequestDto.username(), userDto);
 
-            // 인증 시 발생하는 에러 처리를 위해 catch 문을 추가합니다.
-        } catch (AuthenticationException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+        // JWT 토큰 생성 후 리턴
+
+        return jwtTokenUtil.createToken(user.getUsername(), user.getAuthorities());
+
     }
 
     private record UserDto(String userName, Collection<String> roles) {

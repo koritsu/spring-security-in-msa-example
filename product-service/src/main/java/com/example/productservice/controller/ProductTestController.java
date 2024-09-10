@@ -20,4 +20,10 @@ public class ProductTestController {
     public String getAdmin() {
         return "Admin";
     }
+
+    @GetMapping("/has-no-role")
+    public String getNoRole() {
+        return "No Role";
+    }
+
 }

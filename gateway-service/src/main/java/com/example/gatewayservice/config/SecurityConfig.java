@@ -46,7 +46,7 @@ public class SecurityConfig {
 
     @Bean
     public WebFilter jwtAuthenticationFilter(RedisService redisService) {
-
+        // TODO: 게이트웨이 jwt 인증 처리 필터
         return (exchange, chain) -> {
 
             // /auth/login 경로는 필터를 적용하지 않음

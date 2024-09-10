@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ public class CustomPreAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        // :TODO 상품 서비스 선처리 필터 작성
         // 헤더에서 사용자 정보와 역할(Role)을 추출
         String username = request.getHeader("X-User-Name");
         String rolesHeader = request.getHeader("X-User-Roles");
@@ -37,8 +39,14 @@ public class CustomPreAuthFilter extends OncePerRequestFilter {
             // SecurityContext에 인증 정보 설정
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         } else {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);  // 헤더가 없거나 역할 정보가 없으면 401 응답
-            return;
+            // 빈 권한 처리
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+                    null,
+                    null,
+                    AuthorityUtils.NO_AUTHORITIES // 빈 권한 목록
+            );
+
+            SecurityContextHolder.getContext().setAuthentication(auth);
         }
 
         // 필터 체인을 계속해서 진행

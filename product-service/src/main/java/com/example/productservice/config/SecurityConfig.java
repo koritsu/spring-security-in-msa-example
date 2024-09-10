@@ -27,6 +27,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // :TODO 상품 서비스 security 설정
+
         // CSRF disable
         http.csrf(AbstractHttpConfigurer::disable);
 
@@ -35,8 +37,9 @@ public class SecurityConfig {
                 sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         );
 
+        // 모든 요청 인증처리
         http.authorizeHttpRequests((authorizeHttpRequests) ->
-                authorizeHttpRequests.anyRequest().authenticated() // 모든 요청 인증처리
+                authorizeHttpRequests.anyRequest().authenticated()
         );
 
         // 필터 관리
