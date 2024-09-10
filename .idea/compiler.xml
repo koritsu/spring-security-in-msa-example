@@ -8,7 +8,6 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.28/a2ff5da8bcd8b1b26f36b806ced63213362c6dcc/lombok-1.18.28.jar" />
         </processorPath>
         <module name="msa-security-example.auth-service.test" />
-        <module name="msa-security-example.gateway-service.test" />
         <module name="msa-security-example.gateway-service.main" />
         <module name="msa-security-example.product-service.main" />
         <module name="msa-security-example.auth-service.main" />
