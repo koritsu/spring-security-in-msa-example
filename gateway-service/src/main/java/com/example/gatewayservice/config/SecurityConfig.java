@@ -44,7 +44,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
     public WebFilter jwtAuthenticationFilter(RedisService redisService) {
         // TODO: 게이트웨이 jwt 인증 처리 필터
         return (exchange, chain) -> {
